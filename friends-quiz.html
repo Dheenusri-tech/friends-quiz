@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>How Well Do You Know Me? Quiz</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&family=Nunito:wght@700;800&display=swap">
+<style>
+:root{--bg1:#7b2ff7;--bg2:#f107a3;--card:#fff;--ink:#27124a;--mute:#6f5c93;--line:#eadcff;--good:#10b981;--bad:#ef4444;--acc:#7b2ff7;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--card:#251346;--ink:#f5ecff;--mute:#bba6e6;--line:#3d2569}}
+:root[data-theme="dark"]{--card:#251346;--ink:#f5ecff;--mute:#bba6e6;--line:#3d2569}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;background:linear-gradient(150deg,var(--bg1),var(--bg2));color:var(--ink);font-family:'Nunito',system-ui,sans-serif;font-weight:700;padding:18px 14px 30px;display:flex;justify-content:center}
+.wrap{width:100%;max-width:540px}
+h1,h2,.btn,.big{font-family:'Baloo 2',system-ui,sans-serif}
+h1{color:#fff;font-size:2.1rem;font-weight:800;text-align:center;margin:6px 0 0;text-shadow:0 3px 0 #0003}
+.tag{color:#ffe8fa;text-align:center;margin:4px 0 0}
+.card{background:var(--card);border-radius:28px;padding:20px;margin-top:16px;box-shadow:0 14px 0 #0002}
+.big{font-size:64px;text-align:center;line-height:1}
+h2{font-size:1.35rem;text-align:center;margin:8px 0 12px;line-height:1.25}
+.sub{color:var(--mute);text-align:center;margin:6px 0 10px}
+input{width:100%;font:inherit;color:var(--ink);background:transparent;border:2px solid var(--line);border-radius:14px;padding:12px 14px;margin:6px 0}
+input:focus{outline:3px solid var(--acc);border-color:var(--acc)}
+.btn{display:block;width:100%;font-size:1.1rem;font-weight:800;border:0;cursor:pointer;color:#fff;background:linear-gradient(90deg,var(--bg1),var(--bg2));border-radius:16px;padding:12px;margin-top:10px;text-align:center;text-decoration:none}
+.btn.ghost{background:transparent;color:var(--mute);border:2px solid var(--line)}
+.btn:focus-visible,.tile:focus-visible,.sh a:focus-visible{outline:3px solid #ffd23f;outline-offset:2px}
+.top{display:flex;justify-content:space-between;color:var(--mute);font-size:.9rem}
+.bar{height:10px;border-radius:10px;background:var(--line);margin:8px 0 12px;overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#ffd23f,var(--bg2));transition:width .3s}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.tile{font:inherit;color:#fff;border:3px solid transparent;border-radius:22px;padding:18px 8px 12px;cursor:pointer;text-align:center;display:flex;flex-direction:column;align-items:center;gap:6px;transition:transform .15s;box-shadow:0 6px 0 #0002}
+.tile:hover:not(:disabled){transform:translateY(-4px) scale(1.03)}
+.tile b{font-size:50px;line-height:1;filter:drop-shadow(0 4px 4px #0004)}
+.tile span{font-size:1rem}
+.tile.good{border-color:#fff;box-shadow:0 0 0 5px var(--good)}
+.tile.bad{opacity:.45}
+.tile:disabled{cursor:default}
+.fb{text-align:center;min-height:26px;margin-top:10px;font-weight:800}
+.score{font-family:'Baloo 2',sans-serif;font-size:3.6rem;font-weight:800;text-align:center;line-height:1.1}
+.sh{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.sh a,.sh button{flex:1 1 44%;font:inherit;font-weight:800;color:#fff;text-decoration:none;text-align:center;border:0;border-radius:12px;padding:11px 6px;cursor:pointer}
+.row{display:flex;align-items:center;gap:10px;padding:10px 12px;border:2px solid var(--line);border-radius:16px;margin-bottom:8px}
+.row .n{flex:1}.row .p{color:var(--acc);font-family:'Baloo 2',sans-serif;font-size:1.2rem}
+.lnk{font-size:.8rem}
+.hide{display:none}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+:root{--pg:#eaf4ff;--sk1:#5db4ff;--sk2:#8fd0ff;--bg1:#3b9cff;--bg2:#2f86f0;--card:#fff;--ink:#14224d;--mute:#5a6b95;--line:#d6e8fb;--acc:#2f86f0}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--pg:#0f1b3a;--sk1:#1f3d7a;--sk2:#2a5aa8;--card:#18285a;--ink:#eef3ff;--mute:#a9b9e6;--line:#2c4180}}
+:root[data-theme="dark"]{--pg:#0f1b3a;--sk1:#1f3d7a;--sk2:#2a5aa8;--card:#18285a;--ink:#eef3ff;--mute:#a9b9e6;--line:#2c4180}
+body{position:relative;background:linear-gradient(var(--sk1),var(--sk2) 130px,var(--pg) 130px)}
+.clouds{position:absolute;left:0;top:92px;width:100%;height:70px;z-index:0;pointer-events:none}
+.wrap{position:relative;z-index:1}
+h1{color:#ff5f9e;font-size:2.3rem;-webkit-text-stroke:7px #fff;paint-order:stroke fill;text-shadow:0 4px 0 #0002;margin:2px 0 0;line-height:1.05}
+.chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:36px 0 0}
+.chips span{background:var(--card);color:var(--acc);border:2px solid var(--line);border-radius:999px;padding:5px 12px;font-size:.85rem}
+.card{border-radius:34px;box-shadow:0 12px 30px #2f86f026;margin-top:14px}
+.btn{border-radius:999px;box-shadow:0 6px 0 #1f64c0}
+.btn.ghost{box-shadow:none;border-color:var(--line);color:var(--acc)}
+.btn:active{transform:translateY(3px);box-shadow:0 3px 0 #1f64c0}
+.dd{position:absolute;font-style:normal;font-size:22px;pointer-events:none}
+.hero{position:relative;display:flex;justify-content:center;padding-top:8px}
+.hero svg{width:150px;height:auto}
+.bub{position:absolute;right:0;top:4px;max-width:150px;background:var(--card);color:var(--ink);border:2px solid var(--line);border-radius:18px;padding:8px 10px;font-size:.82rem;line-height:1.3;transform:rotate(4deg);box-shadow:0 8px 16px #2f86f022}
+.hl{background:#fff1a8;color:#14224d;border-radius:4px;padding:0 3px}
+.hd{font-size:1.9rem;font-weight:800;margin:6px 0 10px}
+.hd u{color:var(--acc);text-decoration:underline wavy #9ccaff;text-underline-offset:6px}
+.tile{border-radius:26px}
+.card{position:relative}.btn:disabled{opacity:.35;filter:blur(1.5px);cursor:not-allowed;box-shadow:none}.tile.sel{border-color:#fff;box-shadow:0 0 0 5px var(--acc);transform:scale(1.04)}
+:root{--pg:#fff4ea;--sk1:#ff8a5b;--sk2:#ff6fa5;--bg1:#ff7a45;--bg2:#ff4f8b;--ink:#3a1d3f;--mute:#85607f;--line:#ffe0d0;--acc:#ff5a3c}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--pg:#2a1230;--sk1:#8a3a2a;--sk2:#8a2a5a;--card:#3a1d45;--ink:#fff0f5;--mute:#e0b8d0;--line:#5a2f63}}
+:root[data-theme="dark"]{--pg:#2a1230;--sk1:#8a3a2a;--sk2:#8a2a5a;--card:#3a1d45;--ink:#fff0f5;--mute:#e0b8d0;--line:#5a2f63}
+h1{color:#fff;-webkit-text-stroke:7px #ff5a3c}
+.btn{box-shadow:0 6px 0 #c2410c}.btn:active{box-shadow:0 3px 0 #c2410c}.btn:disabled{box-shadow:none}
+.hd u{text-decoration-color:#ffb59a}
+.card{box-shadow:0 12px 30px #ff5a3c26}.bub{box-shadow:0 8px 16px #ff5a3c22}
+[hidden]{display:none!important}.row .n{overflow:hidden;text-overflow:ellipsis}</style>
+</head>
+<body>
+<div class="wrap">
+ <svg class="clouds" viewBox="0 0 400 70" preserveAspectRatio="none" aria-hidden="true"><g style="fill:var(--pg)"><circle cx="15" cy="48" r="26"/><circle cx="65" cy="40" r="34"/><circle cx="125" cy="50" r="28"/><circle cx="185" cy="42" r="36"/><circle cx="250" cy="50" r="28"/><circle cx="305" cy="38" r="34"/><circle cx="365" cy="48" r="30"/><circle cx="400" cy="46" r="24"/><rect x="0" y="50" width="400" height="30"/></g></svg>
+ <h1>Know Me? 🤔</h1>
+ <div class="chips"><span>📸 Photo questions</span><span>🔗 Share links</span><span>📊 Dashboard</span></div>
+
+ <div class="card" id="home">
+  <i class="dd" style="left:16px;top:16px">⭐</i><i class="dd" style="left:22px;top:150px">💙</i><i class="dd" style="right:18px;bottom:210px">✨</i>
+  <div class="hero">
+   <svg viewBox="0 0 160 150" role="img" aria-label="Cute panda holding a phone"><circle cx="34" cy="30" r="17" fill="#3b2320"/><circle cx="126" cy="30" r="17" fill="#3b2320"/><circle cx="80" cy="86" r="58" fill="#fff" stroke="#3b2320" stroke-width="3.5"/><circle cx="62" cy="84" r="5.5" fill="#3b2320"/><circle cx="98" cy="84" r="5.5" fill="#3b2320"/><ellipse cx="45" cy="100" rx="11" ry="8" fill="#ffb3c7"/><ellipse cx="115" cy="100" rx="11" ry="8" fill="#ffb3c7"/><path d="M71 98q4 6 9 0q4 6 9 0" fill="none" stroke="#3b2320" stroke-width="3" stroke-linecap="round"/><rect x="104" y="108" width="30" height="40" rx="7" fill="#7fd6f5" stroke="#3b2320" stroke-width="3"/><circle cx="114" cy="124" r="3" fill="#3b2320"/><circle cx="124" cy="124" r="3" fill="#3b2320"/><circle cx="104" cy="134" r="9" fill="#fff" stroke="#3b2320" stroke-width="3"/></svg>
+   <div class="bub">let's find &amp; share<br>who knows <span class="hl">you</span> best</div>
+  </div>
+  <h2 class="hd">share your <u>link</u> 🔗<br>&amp; see who knows you</h2>
+  <input id="myname" placeholder="Your name" maxlength="20" aria-label="Your name">
+  <input id="myphone" inputmode="tel" placeholder="WhatsApp number with country code (optional)" maxlength="15" aria-label="WhatsApp number">
+  <button class="btn" id="make">Create my quiz</button>
+  <button class="btn ghost" id="dash">📊 My dashboard</button>
+  <input id="code" placeholder="Got a friend's quiz link or code? Paste here" aria-label="Friend code">
+  <button class="btn ghost" id="open">Open friend's quiz</button>
+ </div>
+
+ <div class="card hide" id="gen">
+  <div class="big">🙋</div>
+  <h2>Are you a boy or a girl?</h2>
+  <div class="grid"><button class="tile" data-g="m" style="background:linear-gradient(135deg,#6cc4ff,#3b9cff)"><b>👦</b><span>Boy</span></button><button class="tile" data-g="f" style="background:linear-gradient(135deg,#ff8fab,#ff5f9e)"><b>👧</b><span>Girl</span></button></div>
+  <button class="btn ghost" id="gbk">Back</button>
+ </div>
+
+ <div class="card hide" id="pick">
+  <div class="big">🔢</div>
+  <h2>How many questions do you want in your quiz?</h2>
+  <div class="grid" id="cnts"></div>
+  <p class="sub">Don't like a question? Skip it and you get a different one. Your total stays the same.</p>
+  <button class="btn ghost" id="pbk">Back</button>
+ </div>
+
+ <div class="card hide" id="qz">
+  <div class="top"><span id="cnt"></span><span id="sc"></span></div>
+  <div class="bar"><i id="pg"></i></div>
+  <h2 id="qt"></h2>
+  <div class="grid" id="ops"></div>
+  <div class="fb" id="fb" aria-live="polite"></div>
+  <button class="btn" id="nx" disabled>Next</button>
+  <button class="btn ghost" id="skip">Skip this question</button>
+ </div>
+
+ <div class="card hide" id="share">
+  <div class="big">🎉</div>
+  <h2>Your quiz is ready! Share it:</h2>
+  <div class="sh" id="shr"></div>
+  <input id="lnk" class="lnk" readonly aria-label="Quiz link">
+  <p class="sub">Link not opening? Friends can paste this code on the home page:</p>
+  <input id="cd" class="lnk" readonly aria-label="Quiz code">
+  <button class="btn" id="gd">📊 Go to my dashboard</button>
+ </div>
+
+ <div class="card hide" id="fr">
+  <div class="big">👋</div>
+  <h2 id="frh"></h2>
+  <p class="sub" id="frs"></p>
+  <div id="lb1"></div>
+  <input id="fname" placeholder="Your name" maxlength="20" aria-label="Your name">
+  <button class="btn" id="st">Start</button>
+ </div>
+
+ <div class="card hide" id="rs2">
+  <div class="big" id="rm"></div>
+  <div class="score" id="rsc"></div>
+  <h2 id="rv"></h2>
+  <p class="sub" id="rt"></p>
+  <div id="lb2"></div>
+  <a class="btn" id="sendres" target="_blank" rel="noopener">Send my score to the quiz maker</a>
+  <div class="sh" id="shr2"></div>
+  <button class="btn ghost" id="mine">Make my own quiz</button>
+ </div>
+
+ <div class="card hide" id="db">
+  <div class="big">📊</div>
+  <h2>Friends who played your quiz</h2>
+  <div id="list"></div>
+  <p class="sub">Scores appear here when you open the result link your friend sends you on this same device.</p>
+  <button class="btn ghost" id="bk">Back</button>
+ </div>
+</div>
+<script>
+// Edit questions here. q = shown to the maker, p = shown to friends.
+const Q=[
+{q:"What is my favourite food?",p:"What is {n}'s favourite food?",o:[["🍛","Biryani"],["🥞","Dosa"],["🍕","Pizza"],["🍦","Ice cream"]]},
+{q:"When I'm angry, I...",p:"When {s} is angry, what does {n} do?",o:[["🤐","Go silent"],["🗣️","Shout"],["😭","Cry"],["🚪","Walk away"]]},
+{q:"If I win 1 crore, I first...",p:"If {n} wins 1 crore, what will {s} do first?",o:[["🏠","Buy a house"],["✈️","Travel"],["🎁","Treat friends"],["🏦","Save it"]]},
+{q:"My best quality is...",p:"What is {n}'s best quality?",o:[["😂","Humour"],["💖","Kind heart"],["🧠","Smart mind"],["🤝","Loyalty"]]},
+{q:"My worst habit is...",p:"What is {n}'s worst habit?",o:[["⏰","Always late"],["📱","Phone addict"],["😴","Oversleeping"],["🍕","Overeating"]]},
+{q:"At a party, I...",p:"At a party, what does {n} do?",o:[["💃","Dance"],["🍽️","Eat"],["📸","Take photos"],["🪑","Sit quietly"]]},
+{q:"When friends fight, I...",p:"When friends fight, what does {n} do?",o:[["🕊️","Make peace"],["🍿","Just watch"],["🏃","Escape"],["🔥","Join in"]]},
+{q:"When I'm sad, I first...",p:"What does {n} do first when {s} is sad?",o:[["🎵","Play music"],["😴","Sleep"],["🍫","Eat something"],["📞","Call a friend"]]},
+{q:"My dream trip is...",p:"What is {n}'s dream trip?",o:[["🏖️","Goa beach"],["🏔️","Ooty hills"],["🗼","Paris"],["🏜️","Rajasthan"]]},
+{q:"Can I keep a secret?",p:"Can {n} keep a secret?",o:[["🔒","Like a vault"],["🤭","Tells after a day"],["📢","Tells everyone"],["😬","Tries but fails"]]},
+{q:"How fast do I reply?",p:"How fast does {n} reply to messages?",o:[["⚡","Instantly"],["🕐","After hours"],["👻","Seen, no reply"],["📞","Just call me"]]},
+{q:"Who am I in my friend group?",p:"Who is {n} in the friend group?",o:[["🎤","The joker"],["🧠","The brain"],["🥘","The foodie"],["👑","The leader"]]},
+{q:"My favourite movie type?",p:"Which movies does {n} love?",o:[["💥","Action"],["😂","Comedy"],["💕","Romance"],["👻","Thriller"]]},
+{q:"My biggest fear is...",p:"What is {n} most afraid of?",o:[["🕷️","Insects"],["🌑","Darkness"],["🎢","Heights"],["👻","Ghosts"]]},
+{q:"First thing I do in the morning?",p:"What does {n} do first in the morning?",o:[["📱","Check phone"],["☕","Tea or coffee"],["😴","Sleep more"],["🏃","Exercise"]]},
+{q:"My dream superpower?",p:"Which superpower would {n} pick?",o:[["🦅","Fly"],["🧠","Read minds"],["👻","Be invisible"],["⏱️","Freeze time"]]},
+{q:"My favourite gift?",p:"Which gift would {n} love most?",o:[["🎂","Cake"],["👗","Clothes"],["📱","Gadgets"],["🍫","Chocolates"]]},
+{q:"My weekend plan?",p:"What is {n}'s usual weekend plan?",o:[["🎮","Gaming"],["🎬","Movies"],["👫","Meet friends"],["😴","Sleep"]]},
+{q:"My favourite drink?",p:"What is {n}'s favourite drink?",o:[["☕","Coffee"],["🍵","Tea"],["🥤","Cold drink"],["🥭","Juice"]]},
+{q:"My favourite pet?",p:"Which pet does {n} love?",o:[["🐶","Dog"],["🐱","Cat"],["🐦","Birds"],["🐠","Fish"]]},
+{q:"My favourite snack?",p:"What is {n}'s favourite snack?",o:[["🍟","Fries"],["🍿","Popcorn"],["🍫","Chocolate"],["🌶️","Spicy chips"]]},
+{q:"What I want in a partner?",p:"What does {n} want most in a partner?",o:[["😂","Funny"],["💰","Rich"],["🥰","Caring"],["🧠","Smart"]]},
+{q:"My favourite music?",p:"What music does {n} love?",o:[["🎶","Melody"],["🥁","Mass beats"],["🎤","Rap"],["📻","Old classics"]]},
+{q:"How am I most days?",p:"How is {n} most days?",o:[["😄","Happy"],["😎","Cool"],["🤪","Crazy"],["🥺","Emotional"]]},
+{q:"My dream job?",p:"What is {n}'s dream job?",o:[["💻","Tech"],["🎨","Artist"],["🩺","Doctor"],["🚀","Own business"]]},
+{q:"What I do most on my phone?",p:"What does {n} do most on the phone?",o:[["📸","Photos"],["🎵","Music"],["📺","Videos"],["💬","Chatting"]]}
+];
+const G=["#ff8fab,#ff5f9e","#6cc4ff,#3b9cff","#7ee0a8,#2fc07a","#ffd166,#ffa94d"];
+// ONLINE LEADERBOARD: paste your Firebase project id and web API key to turn it on (see setup steps).
+const FB={project:"",key:""};
+const online=()=>!!(FB.project&&FB.key);
+const FS=()=>"https://firestore.googleapis.com/v1/projects/"+FB.project+"/databases/(default)/documents";
+async function saveResult(q,n,s,t){
+ await fetch(FS()+"/results?key="+FB.key,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({fields:{q:{stringValue:q},n:{stringValue:n},s:{integerValue:String(s)},t:{integerValue:String(t)},d:{integerValue:String(Date.now())}}})});
+}
+async function loadResults(q){
+ const res=await fetch(FS()+":runQuery?key="+FB.key,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({structuredQuery:{from:[{collectionId:"results"}],where:{fieldFilter:{field:{fieldPath:"q"},op:"EQUAL",value:{stringValue:q}}},limit:200}})});
+ const j=await res.json();
+ return j.filter(x=>x.document).map(x=>{const f=x.document.fields;return{n:f.n.stringValue,s:+f.s.integerValue,t:+f.t.integerValue}});
+}
+const myIds=()=>{try{return JSON.parse(localStorage.getItem("fq_myq")||"[]")}catch(e){return[]}};
+const $=id=>document.getElementById(id);
+const IDS=["home","gen","pick","qz","share","fr","rs2","db"];
+const show=id=>IDS.forEach(x=>$(x).classList.toggle("hide",x!==id));
+const enc=o=>btoa(unescape(encodeURIComponent(JSON.stringify(o))));
+const dec=s=>JSON.parse(decodeURIComponent(escape(atob(s))));
+const base=()=>location.href.split("#")[0];
+let gender="m",spare=[],mode="",i=0,s=0,L=[],mine=[],data=null,pname="",phone="",qid="";
+
+function shareRow(el,url,text){
+ const u=encodeURIComponent(url),t=encodeURIComponent(text);
+ const l=[["WhatsApp","#25d366","https://wa.me/?text="+t+"%20"+u],["Facebook","#1877f2","https://www.facebook.com/sharer/sharer.php?u="+u],["Telegram","#229ed9","https://t.me/share/url?url="+u+"&text="+t],["X","#111","https://twitter.com/intent/tweet?text="+t+"&url="+u],["Email","#ef6c00","mailto:?subject="+t+"&body="+u]];
+ el.innerHTML=l.map(x=>'<a style="background:'+x[1]+'" target="_blank" rel="noopener" href="'+x[2]+'">'+x[0]+'</a>').join("");
+ const c=document.createElement("button");c.style.background="#7b2ff7";c.textContent="Copy link";
+ c.onclick=async()=>{try{await navigator.clipboard.writeText(url);c.textContent="Copied!"}catch(e){c.textContent="Copy from the box"}};
+ el.appendChild(c);
+ if(navigator.share){const n=document.createElement("button");n.style.background="#e1306c";n.textContent="Instagram & more";n.onclick=()=>navigator.share({title:text,text:text,url:url}).catch(()=>{});el.appendChild(n)}
+}
+function ask(){
+ const d=Q[L[i]];
+ $("cnt").textContent=(i+1)+" / "+L.length;
+ $("sc").textContent=mode==="play"?"Score: "+s:"Pick YOUR answer";
+ $("pg").style.width=(i/L.length*100)+"%";
+ $("qt").textContent=mode==="play"?fmt(d.p,data):d.q;
+ $("fb").textContent="";$("nx").disabled=true;$("nx").textContent=i===L.length-1?(mode==="make"?"Finish & get my link":"See result"):"Next";$("skip").hidden=mode!=="make"||!spare.length;$("skip").textContent=mode==="make"?"🔄 Skip - show me another question":"Skip this question";
+ $("ops").innerHTML="";
+ d.o.forEach((o,k)=>{const b=document.createElement("button");b.className="tile";b.style.background="linear-gradient(135deg,"+G[k]+")";b.innerHTML="<b>"+o[0]+"</b><span>"+o[1]+"</span>";b.onclick=()=>pick(k);$("ops").appendChild(b)});
+}
+function pick(k){
+ if(mode==="make"){mine[L[i]]=k;[...$("ops").children].forEach((b,n)=>b.classList.toggle("sel",n===k));$("nx").disabled=false;return}
+ const right=data.a[L[i]],bs=[...$("ops").children];
+ bs.forEach((b,n)=>{b.disabled=true;if(n===right)b.classList.add("good");else if(n!==k)b.classList.add("bad")});
+ if(k===right){s++;$("fb").textContent="You know them well! ✅";$("fb").style.color="var(--good)"}
+ else{$("fb").textContent="Oops, wrong guess ❌";$("fb").style.color="var(--bad)"}
+ $("sc").textContent="Score: "+s;$("skip").hidden=true;
+ $("nx").disabled=false;
+}
+function next(){
+ i++;
+ if(i<L.length){ask();return}
+ mode==="make"?finishMake():finishPlay();
+}
+function finishMake(){
+ if(mine.every(x=>x<0)){i=0;ask();$("fb").textContent="Answer at least 1 question, then share!";$("fb").style.color="var(--bad)";return}
+ const code=enc({n:pname,a:mine,p:phone,i:qid,g:gender});
+ const url=base()+"#q="+code;
+ try{const m=myIds();m.push(qid);localStorage.setItem("fq_myq",JSON.stringify(m))}catch(e){}
+ $("lnk").value=url;$("cd").value=code;
+ shareRow($("shr"),url,pname+" made a quiz. How well do you know them?");
+ show("share");
+}
+function finishPlay(){
+ const t=L.length,pc=s/t,n=data.n,o=data.g==="f"?"her":"him";
+ const r=pc===1?["💯","Soulmate alert!","Wow! You know "+n+" perfectly. You two are soulmates!"]
+ :pc>=.8?["🏆","True bestie!","Superb! You know "+n+" like a real bestie. "+n+" is lucky to have you!"]
+ :pc>=.6?["😎","Good friend","Nice! You know "+n+" quite well. A few more chats and you will be perfect!"]
+ :pc>=.4?["🙂","Getting there","Not bad! You know some things about "+n+". Time for a long catch-up!"]
+ :["😅","Who are you again?","Oops! You hardly know "+n+", but you are still sweet. Go meet "+o+" soon!"];
+ $("rm").textContent=r[0];$("rsc").textContent=s+" / "+t;$("rv").textContent=r[1];
+ $("rt").textContent=(pname?pname+", ":"")+r[2];
+ const link=base()+"#r="+enc({q:data.i,n:pname||"A friend",s:s,t:t});
+ $("sendres").href="https://wa.me/"+(data.p||"")+"?text="+encodeURIComponent((pname||"A friend")+" played your quiz and scored "+s+"/"+t+" "+r[0]+" "+r[1]+" See it on your dashboard: "+link);
+ shareRow($("shr2"),base()+"#q="+enc(data),"Can you beat my score? I got "+s+"/"+t+" on "+n+"'s quiz!");
+ $("sendres").hidden=online();
+ show("rs2");
+ if(online()){saveResult(data.i,pname||"A friend",s,t).then(()=>loadResults(data.i)).then(a=>board($("lb2"),a,"Everyone who played")).catch(()=>{})}
+}
+function results(){try{return JSON.parse(localStorage.getItem("fq_results")||"[]")}catch(e){return[]}}
+function addResult(r){try{const a=results();a.push(r);localStorage.setItem("fq_results",JSON.stringify(a))}catch(e){}}
+function board(el,a,title){
+ a.sort((x,y)=>y.s/y.t-x.s/x.t);
+ el.innerHTML=(title&&a.length?'<h2>'+title+'</h2>':'')+(a.length?a.map((r,k)=>'<div class="row"><span>'+(["🥇","🥈","🥉"][k]||(k+1)+".")+'</span><span class="n"></span><span class="p">'+r.s+'/'+r.t+'</span></div>').join(""):(title?'':'<p class="sub">No results yet. Share your quiz first!</p>'));
+ el.querySelectorAll(".n").forEach((e,k)=>e.textContent=a[k].n);
+}
+async function dashboard(){
+ let a=results();
+ if(online()){
+  show("db");$("list").innerHTML='<p class="sub">Loading...</p>';a=[];
+  try{for(const id of myIds())a=a.concat(await loadResults(id))}catch(e){}
+ }
+ board($("list"),a);show("db");
+}
+function startMake(){
+ const n=$("myname").value.trim();
+ if(!n){$("myname").focus();$("myname").placeholder="Please type your name first";return}
+ pname=n;phone=$("myphone").value.replace(/\D/g,"");qid=Math.random().toString(36).slice(2,8);
+ show("gen");
+}
+document.querySelectorAll("[data-g]").forEach(b=>b.onclick=()=>{gender=b.dataset.g;show("pick")});
+$("gbk").onclick=()=>show("home");
+const fmt=(x,d)=>x.replace(/\{n\}/g,d.n).replace(/\{s\}/g,d.g==="f"?"she":"he").replace(/\{p\}/g,d.g==="f"?"her":"his").replace(/\{o\}/g,d.g==="f"?"her":"him");
+function beginMake(n){
+ const o=[...Q.keys()].sort(()=>Math.random()-.5);
+ L=o.slice(0,n);spare=o.slice(n);mine=Q.map(()=>-1);mode="make";i=0;show("qz");ask();
+}
+[5,10,15,20].forEach((n,k)=>{const b=document.createElement("button");b.className="tile";b.style.background="linear-gradient(135deg,"+G[k%4]+")";b.innerHTML="<b>"+n+"</b><span>questions</span>";b.onclick=()=>beginMake(n);$("cnts").appendChild(b)});
+$("pbk").onclick=()=>show("home");
+function openFriend(c){
+ try{data=dec(c.trim().split("#").pop().replace(/^q=/,""));if(!data.a||data.a.length!==Q.length)throw 0}
+ catch(e){$("code").value="";$("code").placeholder="That did not work. Try again";return}
+ L=data.a.map((a,k)=>a>=0?k:-1).filter(k=>k>=0);
+ $("frh").textContent=data.n+" made a quiz for you";
+ $("frs").textContent=L.length+" photo questions about them. Let's see how well you know them!";
+ show("fr");
+ $("lb1").innerHTML="";
+ if(online())loadResults(data.i).then(a=>board($("lb1"),a,"Already played")).catch(()=>{});
+}
+$("make").onclick=startMake;
+$("open").onclick=()=>openFriend($("code").value);
+$("st").onclick=()=>{pname=$("fname").value.trim();mode="play";i=0;s=0;show("qz");ask()};
+$("nx").onclick=next;
+$("skip").onclick=()=>{
+ if(mode==="make"){L[i]=spare.shift();ask();$("fb").textContent="Here is a new question 🔄";$("fb").style.color="var(--acc)";return}
+ next();
+};
+$("dash").onclick=dashboard;$("gd").onclick=dashboard;
+$("bk").onclick=()=>show("home");
+$("mine").onclick=()=>{location.hash="";show("home")};
+const h=location.hash.slice(1);
+if(h.startsWith("q="))openFriend(h);
+else if(h.startsWith("r=")){try{addResult(dec(h.slice(2)));dashboard()}catch(e){}}
+</script>
+</body>
+</html>
